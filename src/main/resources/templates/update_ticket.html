@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorator="layout">
+
+<head>
+<title>Create Ticket</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<p>
+			Welcome <span sec:authentication="principal.username">User</span>
+		</p>
+		<p>
+			<a th:href="@{/logout}">Logout</a>
+		</p>
+
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+
+			<p>
+				<a th:href="@{/home}">Admin Home</a>
+			</p>
+		</div>
+		<h3>Update Ticket</h3>
+
+		<div class="row">
+			<div class="col-md-4">
+				<form th:action="@{'/ticket/'+ ${ticket.id}}" method="put" th:object="${ticket}">
+
+					<div class="form-group">
+						<label class="control-label" for="name"> Ticket
+							Description </label> <input id="name" class="form-control"
+							th:field="*{name}" required autofocus="autofocus" />
+					</div>
+					<div class="form-group">
+						<label>Category Select</label> <input type="button"
+							id="getCategory" value="Category" /> <select
+							th:field="*{category}" id="sel1" class="selectpicker">
+
+
+							<option value="">-- Select --</option>
+						</select>
+						<p id="msgCategory"></p>
+					</div>
+					<br>
+					<div class="form-group">
+						<label>Status Select</label> <input type="button" id="getStatus"
+							value="Status" /> <select th:field="*{status}" id="sel2"
+							class="selectpicker">
+							<option value="">-- Select --</option>
+						</select>
+						<p id="msgStatus"></p>
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Update</button>
+					</div>
+					<!-- 					<div class="form-group"> -->
+					<!-- 						    <label for="exampleFormControlFile1">Example file input</label> -->
+					<!-- 						<input type="file" class="form-control-file" -->
+					<!-- 							id="exampleFormControlFile1"> -->
+					<!-- 					</div> -->
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

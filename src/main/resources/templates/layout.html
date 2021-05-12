@@ -6,16 +6,17 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Support Ticket System</title>
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Support
+	Ticket System</title>
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport" />
 
 
 <link th:rel="stylesheet"
-	th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css} " />
+	th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css} " />
 <link th:rel="stylesheet"
-	th:href="@{/webjars/bower/fontawesome/4.7.0/css/font-awesome.min.css}" />
+	th:href="@{/webjars/fontawesome/4.7.0/css/font-awesome.min.css}" />
 <style>
 .footer {
 	position: fixed;
@@ -43,23 +44,23 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul sec:authorize="isAuthenticated()" class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link"
-					th:href="@{/ticket}">Create Ticket <span class="sr-only">(current)</span>
-				</a></li>
-
-
+				<li class="nav-item active">
+					<a class="nav-link"
+						type="button" th:href="@{/ticket/add}" >Create Ticket <span class="sr-only">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link"
+						th:href="@{/viewTickets}">View Tickets <span class="sr-only">(current)</span>
+					</a>
+				</li>
+		
 			</ul>
-
-
-
-
 		</div>
 		<div class="navbar-nav">
 
-				<a  sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
-
-
-				<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a>
+			<a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a> <a
+				sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a>
 
 		</div>
 
@@ -74,11 +75,62 @@
 
 	</div>
 
+
+	<script th:src="@{/webjars/jquery/1.10.1/jquery.min.js}"></script>
 	<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+
 	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
 	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 
 	<div class="footer"></div>
 
 </body>
+<script>
+    $(document).ready(function () {
+        $('#getCategory').click(function () {
+            
+            var url = "https://604938a3fb5dcc0017969c2d.mockapi.io/api/category";
+
+            $.getJSON(url, function (data) {
+                $.each(data, function (index, value) {
+                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
+                    $('#sel1').append(
+							'<option value="' + value.category + '">'+ value.category	+ '</option>');
+                });
+            });
+        });
+
+        // SHOW SELECTED VALUE.
+        $('#sel1').change(function () {
+            $('#msgCategory').text('Selected Item: ' + this.options[this.selectedIndex].text);
+            
+           
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#getStatus').click(function () {
+            
+
+           var url = "https://604938a3fb5dcc0017969c2d.mockapi.io/api/status";
+
+            $.getJSON(url, function (data) {
+                $.each(data, function (index, value) {
+                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
+                    $('#sel2').append(
+							'<option value="' + value.statusCode + '">'+ value.statusCode	+ '</option>');
+                });
+            });
+        });
+
+        // SHOW SELECTED VALUE.
+        $('#sel2').change(function () {
+            $('#msgStatus').text('Selected Item: ' + this.options[this.selectedIndex].text);
+        });
+    });
+
+</script>
+
+
 </html>

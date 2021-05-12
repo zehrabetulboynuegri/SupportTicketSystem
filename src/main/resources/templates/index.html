@@ -11,10 +11,10 @@
     <body>
     	<div layout:fragment="content">
     	
+    	
 		     <p sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></p>
-		      <p><a th:href="@{/register}">Register</a></p>
-	         <p><a th:href="@{/home}">User Home</a></p>
-		     <p><a th:href="@{/home}">Admin Home</a></p>
+		      <p><a th:href="@{/registration}">Register</a></p>
+	     
 		     <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></p>
     	</div>
     	

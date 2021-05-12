@@ -5,23 +5,24 @@ create table if not exists persistent_logins (
   last_used timestamp not null
 );
 
-delete from  user_role;
-delete from  roles;
-delete from  users;
+delete from  users_roles;
+delete from  role;
+delete from  user;
 
 
-INSERT INTO roles (id, name) VALUES 
+INSERT INTO role (id, name) VALUES 
 (1, 'ROLE_ADMIN'),
 (2, 'ROLE_ACTUATOR'),
 (3, 'ROLE_USER')
 ;
 
-INSERT INTO users (id, email, password, name) VALUES 
-(1, 'admin@gmail.com', '$2a$10$hKDVYxLefVHV/vtuPhWD3OigtRyOykRLDdUAp80Z1crSoS1lFqaFS', 'Admin'),
-(3, 'user@gmail.com', '$2a$10$ByIUiNaRfBKSV6urZoBBxe4UbJ/sS6u1ZaPORHF9AtNWAuVPVz1by', 'User');
+INSERT INTO user (id, email, password, name) VALUES 
+(1, 'admin@gmail.com', '{bcrypt}$2a$10$.xuUgiYgl.mqqJ3hMOYUteFiwyDJc59qUoMN93.FM6qKZOL4rvEJG', 'Admin'),
+(2, 'deneme@gmail.com', '{bcrypt}$2a$10$i9nUOsXSC7uIuvohkjycTOstD1/TMwLSDIl9a5.vGqypdXtRyL7Gy', 'deneme'),
+(3, 'betul@gmail.com', '{bcrypt}$2a$10$DA/Hz9AU.xI8M7mFPYGzGO7KCawdXSkYYl2nVIUUXACSy7//mnOL6', 'betul');
 
 
-insert into user_role(user_id, role_id) values
+insert into users_roles(user_id, role_id) values
 (1,1),
 (1,2),
 (1,3),
