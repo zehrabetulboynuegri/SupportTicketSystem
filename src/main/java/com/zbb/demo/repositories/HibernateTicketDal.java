@@ -38,7 +38,9 @@ public class HibernateTicketDal implements ITicketDal {
 		Session session = entityManager.unwrap(Session.class);
 	
 		ticket.setUserName(currentPrincipalName);
-		session.save(ticket);
+		
+		
+		session.saveOrUpdate(ticket);
 
 	}
 

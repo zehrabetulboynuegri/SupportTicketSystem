@@ -27,9 +27,14 @@
 
 		<div class="row">
 			<div class="col-md-4">
-				<form th:action="@{'/ticket/'+ ${ticket.id}}" method="put" th:object="${ticket}">
-
+				<form th:action="@{/tickets}" method="post" th:object="${ticket}">
+<div class="form-group">
+<label class="control-label" for="name"> Ticket
+							ID </label>
+                        <input type="text" th:field="*{id}" readonly="readonly" />
+                   	</div>
 					<div class="form-group">
+						
 						<label class="control-label" for="name"> Ticket
 							Description </label> <input id="name" class="form-control"
 							th:field="*{name}" required autofocus="autofocus" />

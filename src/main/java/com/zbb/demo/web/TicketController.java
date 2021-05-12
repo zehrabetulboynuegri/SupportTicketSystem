@@ -52,15 +52,16 @@ public class TicketController {
 		//return new ResponseEntity<>("Ticket is created successfully", HttpStatus.CREATED);
 	}
 
-	@PutMapping("/ticket/{id}")
-	public ResponseEntity<Object> updateProduct(@RequestBody Ticket ticket, @PathVariable String id) {
-		if (ticketService.getById(id) != null) {
-			ticketService.update(ticket, id);
-			return new ResponseEntity<>("Ticket is updated successfully", HttpStatus.OK);
-		}
-		return new ResponseEntity<>("Ticket is not found", HttpStatus.NOT_FOUND);
-
-	}
+	/*
+	 * @PutMapping("/ticket/{id}") public ResponseEntity<Object>
+	 * updateProduct(@ModelAttribute("ticket") Ticket ticket, @PathVariable String
+	 * id) { if (ticketService.getById(id) != null) { ticketService.update(ticket,
+	 * id); return new ResponseEntity<>("Ticket is updated successfully",
+	 * HttpStatus.OK); } return new ResponseEntity<>("Ticket is not found",
+	 * HttpStatus.NOT_FOUND);
+	 * 
+	 * }
+	 */
 
 	
 	
