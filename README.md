@@ -4,7 +4,8 @@ Default Users => {
   1=> username : Admin,  password : nimda, role : (admin)
   2=> username : Zehra,  password : arhez, role : (user)
  }
-O kullanicilardan datasql(supportTicketTystem/src/main/resources/data.sql) içerisinde Admin kullanicisi icin password'u 'admin' olarak girebilirsiniz.
+ 
+O kullanıcılar dışında datasql(supportTicketTystem/src/main/resources/data.sql) içerisinde Admin kullanicisi için maili 'admin@gmail.com' password'u 'admin' olarak girebilirsiniz.
 
 Aşağıda örnek user'ları görebilirsiniz.
 
